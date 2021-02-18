@@ -1,0 +1,21 @@
+# Template file for 'howdoi'
+pkgname=howdoi
+version=2.0.10
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="keep python3-Pygments python3-cssselect python3-lxml python3-pyquery
+ python3-requests python3-appdirs python3-cachelib"
+checkdepends="python3-pytest python3-cachelib python3-pyquery python3-cssselect
+ python3-lxml python3-appdirs python3-requests keep python3-Pygments"
+short_desc="Instant coding answers via command line"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="MIT"
+homepage="https://github.com/gleitz/howdoi"
+changelog="https://github.com/gleitz/howdoi/blob/master/CHANGES.txt"
+distfiles="https://github.com/gleitz/howdoi/archive/v${version}.tar.gz"
+checksum=ba971f072ab19f1de298475e3a731e59df4532d4abf1302d0bc3d3eb1c4625d2
+
+post_install() {
+	vlicense LICENSE.txt
+}
