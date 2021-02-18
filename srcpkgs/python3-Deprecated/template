@@ -1,0 +1,19 @@
+# Template file for 'python3-Deprecated'
+pkgname=python3-Deprecated
+version=1.2.11
+revision=1
+wrksrc=deprecated-${version}
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="python3-wrapt"
+checkdepends="python3-pytest python3-wrapt"
+short_desc="Decorator to deprecate old python classes"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="MIT"
+homepage="https://github.com/tantale/deprecated"
+distfiles="https://github.com/tantale/deprecated/archive/v${version}.tar.gz"
+checksum=0a43e7c19492217e5b32497c5a2327ebc9c2fc16ae45c2dbafa9fc0685a8bdf4
+
+post_install() {
+	vlicense LICENSE.rst
+}
