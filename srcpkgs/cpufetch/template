@@ -1,0 +1,15 @@
+# Template file for 'cpufetch'
+pkgname=cpufetch
+version=0.94
+revision=1
+build_style=gnu-makefile
+short_desc="Simple CPU architecture fetching tool"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="MIT"
+homepage="https://github.com/Dr-Noob/cpufetch"
+distfiles="https://github.com/Dr-Noob/cpufetch/archive/v${version}.tar.gz"
+checksum=a8b05a34230041c2d919db6b4541081744b3fe0af0556a93f0652f6350f83c96
+
+post_install() {
+	vlicense LICENSE
+}
