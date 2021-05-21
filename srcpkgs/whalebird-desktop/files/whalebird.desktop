@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Whalebird
+Comment=An Electron based Mastodon client
+Exec=whalebird
+Terminal=false
+Type=Application
+Icon=whalebird
+StartupWMClass=Whalebird
+Categories=Network;

@@ -1,0 +1,50 @@
+# Template file for 'whalebird-desktop'
+pkgname=whalebird-desktop
+version=4.4.0
+revision=1
+_electron_ver=12
+hostmakedepends="yarn nodejs app-builder python3 pkg-config libnotify-devel
+ libappindicator-devel git"
+makedepends="electron${_electron_ver} fontconfig-devel"
+depends="electron${_electron_ver} c-ares ffmpeg gtk+3 http-parser libevent
+ libxslt minizip nss re2 snappy libvpx6"
+short_desc="Electron based client for Mastodon, Pleroma and Misskey"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="MIT"
+homepage="https://whalebird.social/"
+distfiles="https://github.com/h3poteto/whalebird-desktop/archive/${version}.tar.gz"
+checksum=65f1be0472feda4d6318eaaef1edc8f2c56a4c7a69706e539d6949a61968af94
+
+export USE_SYSTEM_APP_BUILDER=true
+
+do_configure() {
+	local carch=x64
+	case "$XBPS_TARGET_MACHINE" in
+		i686*) carch=ia32 ;;
+	esac
+	npm_config_arch=$carch \
+		yarn upgrade electron@"$(</usr/lib/electron${_electron_ver}/version)" \
+			--non-interactive
+}
+
+do_build() {
+	export NODE_ENV=production
+	yarn build
+	yarn run electron-builder --linux --x64 --dir \
+		-c.electronDist=/usr/lib/electron${_electron_ver} \
+		-c.electronVersion="$(</usr/lib/electron${_electron_ver}/version)"
+}
+
+do_install() {
+	vmkdir usr/lib/whalebird
+	vinstall "${FILESDIR}/whalebird.desktop" 644 usr/share/applications
+	vbin "${FILESDIR}/whalebird"
+	case "$XBPS_TARGET_MACHINE" in
+		i686*) vcopy build/linux-ia32-unpacked/resources /usr/lib/whalebird/resources;;
+		*) vcopy build/linux-unpacked/resources /usr/lib/whalebird/resources
+  esac
+	for i in 16 32 128 256 512; do
+		vinstall build/icons/icon.iconset/icon_${i}x${i}.png 644 usr/share/icons/hicolor/${i}x${i}/apps/whalebird.png
+	done
+	vlicense LICENSE.txt
+}
