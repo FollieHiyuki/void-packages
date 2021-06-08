@@ -1,0 +1,16 @@
+# Template file for 'python3-proton-client'
+pkgname=python3-proton-client
+version=0.5.1
+revision=1
+wrksrc="proton-python-client-${version}"
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+makedepends="openssl-devel"
+depends="python3-requests python3-bcrypt python3-gnupg python3-openssl"
+checkdepends="python3-pytest $depends"
+short_desc="Python Proton client module"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/ProtonMail/proton-python-client"
+distfiles="https://github.com/ProtonMail/proton-python-client/archive/refs/tags/${version}.tar.gz"
+checksum=941cd8bc41a9e976c98d40f64474c7f8c9070958118c659cfd5b41c7e1a80332
