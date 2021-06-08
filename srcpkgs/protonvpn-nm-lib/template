@@ -1,0 +1,16 @@
+# Template file for 'protonvpn-nm-lib'
+pkgname=protonvpn-nm-lib
+version=3.2.1
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+makedepends="libsecret-devel"
+depends="NetworkManager-openvpn python3-xdg python3-keyring python3-Jinja2
+ python3-distro python3-proton-client python3-gobject"
+checkdepends="python3-pytest $depends"
+short_desc="ProtonVPN NM library"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/ProtonVPN/protonvpn-nm-lib"
+distfiles="https://github.com/ProtonVPN/protonvpn-nm-lib/archive/refs/tags/${version}.tar.gz"
+checksum=e84f59479f1ba9e7bb382ff535b246258e4bbb8638a1fbea09d437e6071f14f6
