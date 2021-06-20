@@ -1,0 +1,22 @@
+# Template file for 'firewalld'
+pkgname=firewalld
+version=0.9.3
+revision=1
+build_style=gnu-configure
+configure_args="--disable-sysconfig --disable-schemas-compile
+ --disable-systemd"
+conf_files="/etc/conf.d/firewalld"
+hostmakedepends="desktop-file-utils intltool docbook-xsl libxslt autoconf
+ automake pkg-config iptables ipset"
+makedepends="gettext-devel elogind-devel glib-devel"
+depends="nftables python3-gobject python3-dbus"
+short_desc="Firewall daemon with D-Bus interface"
+maintainer="FollieHiyuki <folliekazetani@protonmail.com>"
+license="GPL-2.0-or-later"
+homepage="https://firewalld.org/"
+distfiles="https://github.com/firewalld/firewalld/releases/download/v${version}/firewalld-${version}.tar.gz"
+checksum=5998894db976d77996ca0a6b700a2f4125b9f283465fb255da9bddfb1640cb27
+
+pre_configure() {
+	NOCONFIGURE=1 ./autogen.sh
+}
